@@ -117,5 +117,6 @@ BOOL class_addProperty_ex(Class c, NSString* name, id value, NSArray* propertyAt
     }
 
     class_addProperty(c, [name UTF8String], array, count);
+    free(array);
     return YES;
 }

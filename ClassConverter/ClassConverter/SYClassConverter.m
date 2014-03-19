@@ -128,8 +128,7 @@ NSString *setter_from_key(NSString *key);
                     NSUInteger bufferSize = 0;
                     const char* type = property_copyAttributeValue(property, "T");
                     NSGetSizeAndAlignment(type, &bufferSize, NULL);
-                    NSUInteger* buffer = (NSUInteger*)malloc(bufferSize);
-                    *buffer = *buffer & 0;
+                    void* buffer = malloc(bufferSize);
                     
                     NSGetSizeAndAlignment([value objCType], &bufferSize, NULL);
                     void* buffer1 = (void*)malloc(bufferSize);
