@@ -9,6 +9,18 @@
 #ifndef ClassConverter_Runtime_arc_h
 #define ClassConverter_Runtime_arc_h
 
+#ifdef __OBJC__
 
+#import <objc/runtime.h>
+
+#import <Foundation/Foundation.h>
+
+id const class_createInstance_arc(Class const class);
+
+Ivar setInstanceVariable_arc(id obj, const char *name, void *value);
+
+BOOL class_addProperty_ex(Class c, NSString* name, id value, NSArray* propertyAttributeArray);
+
+#endif
 
 #endif
