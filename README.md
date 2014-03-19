@@ -1,4 +1,5 @@
 SYClassConverter
 ================
 
-a class for changing one class into another
+target:the conversion from one class into another one
+current progress:the conversion from dictionary into a class
