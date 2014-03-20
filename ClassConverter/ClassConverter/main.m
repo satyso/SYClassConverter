@@ -25,13 +25,26 @@ int main(int argc, const char * argv[])
         NSNumber* c = [NSNumber numberWithChar:'q'];
         NSArray* array = @[@"frist",@"second"];
         NSDictionary* dic = @{@"str":@"dicStr",@"uinteger":@1,@"doubleValue":@3.4,@"uc":c,@"strArray":array};
-        id test = [SYClassConverter constructObjectWithClassName:@"TestClassA" fromDictionary:dic];
-//        id test = [SYClassConverter constructObjectWithClassName:@"TestClass" fromDictionary:dic];
         
-//        TestClass* test = [TestClass new];
-        [SYClassConverter contructObject:test withDictionary:dic];
+        NSLog(@"classNotExist===========");
+        {
+            id classNotExist = [SYClassConverter constructObjectWithClassName:@"TestClassAAAAA" fromDictionary:dic];
+            display(classNotExist);
+        }
         
-        display(test);
+        NSLog(@"classExist===========");
+        {
+            id classExist = [SYClassConverter constructObjectWithClassName:@"TestClass" fromDictionary:dic];
+            display(classExist);
+        }
+        
+        
+        NSLog(@"objectExist===========");
+        {
+            TestClass* objectExist = [TestClass new];
+            [SYClassConverter contructObject:objectExist withDictionary:dic];
+            display(objectExist);
+        }
     }
     return 0;
 }
@@ -40,7 +53,7 @@ void display(id object)
 {
     unsigned int numIvars = 0;
     Ivar * ivars = class_copyIvarList([object class], &numIvars);
-    
+    NSLog(@"class name = %s", class_getName([object class]));
     for(int i = 0; i < numIvars; i++)
     {
         Ivar thisIvar = ivars[i];
@@ -54,10 +67,14 @@ void display(id object)
         {
             NSLog(@"%@ = %@, type = %s", name, value, class_getName([value class]));
         }
-        objc_property_t property = class_getProperty([object class], ivar_getName(thisIvar));
-        if (property != NULL)
-        {
-            NSLog(@"%s", property_getAttributes(property));
-        }
+    }
+    
+    NSLog(@"property--------------");
+    
+    unsigned int num = 0;
+    objc_property_t* propertyList = class_copyPropertyList([object class], &num);
+    for (int i = 0; i < num; i++)
+    {
+        NSLog(@"property attributes = %s", property_getAttributes(propertyList[i]));
     }
 }
