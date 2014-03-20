@@ -10,7 +10,6 @@
 		6F24CF0D18BCF28100CB1BD6 /* Runtime_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F24CF0C18BCF28100CB1BD6 /* Runtime_helper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6F29F4AC18BB835F00A03A05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F29F4AB18BB835F00A03A05 /* Foundation.framework */; };
 		6F29F4AF18BB835F00A03A05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F29F4AE18BB835F00A03A05 /* main.m */; };
-		6F29F4B318BB835F00A03A05 /* ClassConverter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F29F4B218BB835F00A03A05 /* ClassConverter.1 */; };
 		6F29F4BC18BB83D300A03A05 /* SYClassConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F29F4BB18BB83D300A03A05 /* SYClassConverter.m */; };
 		6F29F4D218BBA5D000A03A05 /* NSDictionary+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F29F4D118BBA5D000A03A05 /* NSDictionary+Util.m */; };
 		6FAE902D18C77AA400DED29A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAE902C18C77AA400DED29A /* TestClass.m */; };
@@ -23,7 +22,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				6F29F4B318BB835F00A03A05 /* ClassConverter.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -36,7 +34,6 @@
 		6F29F4AB18BB835F00A03A05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F29F4AE18BB835F00A03A05 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F29F4B118BB835F00A03A05 /* ClassConverter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClassConverter-Prefix.pch"; sourceTree = "<group>"; };
-		6F29F4B218BB835F00A03A05 /* ClassConverter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ClassConverter.1; sourceTree = "<group>"; };
 		6F29F4BA18BB83D300A03A05 /* SYClassConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYClassConverter.h; sourceTree = "<group>"; };
 		6F29F4BB18BB83D300A03A05 /* SYClassConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYClassConverter.m; sourceTree = "<group>"; };
 		6F29F4D018BBA5D000A03A05 /* NSDictionary+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Util.h"; sourceTree = "<group>"; };
@@ -88,8 +85,6 @@
 				6FAE902A18C77A8B00DED29A /* TestSource */,
 				6F29F4B918BB83AB00A03A05 /* Source */,
 				6FAF56CD18D9389200ABA0EB /* utils */,
-				6F29F4AE18BB835F00A03A05 /* main.m */,
-				6F29F4B218BB835F00A03A05 /* ClassConverter.1 */,
 				6F29F4B018BB835F00A03A05 /* Supporting Files */,
 			);
 			path = ClassConverter;
@@ -117,6 +112,7 @@
 		6FAE902A18C77A8B00DED29A /* TestSource */ = {
 			isa = PBXGroup;
 			children = (
+				6F29F4AE18BB835F00A03A05 /* main.m */,
 				6FAE902B18C77AA400DED29A /* TestClass.h */,
 				6FAE902C18C77AA400DED29A /* TestClass.m */,
 			);

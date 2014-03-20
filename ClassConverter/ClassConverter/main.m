@@ -23,7 +23,8 @@ int main(int argc, const char * argv[])
         
         // insert code here...
         NSNumber* c = [NSNumber numberWithChar:'q'];
-        NSDictionary* dic = @{@"str":@"dicStr",@"uinteger":@1,@"doubleValue":@3.4,@"uc":c};
+        NSArray* array = @[@"frist",@"second"];
+        NSDictionary* dic = @{@"str":@"dicStr",@"uinteger":@1,@"doubleValue":@3.4,@"uc":c,@"strArray":array};
         id test = [SYClassConverter constructObjectWithClassName:@"TestClassA" fromDictionary:dic];
 //        id test = [SYClassConverter constructObjectWithClassName:@"TestClass" fromDictionary:dic];
         
@@ -52,6 +53,11 @@ void display(id object)
         else
         {
             NSLog(@"%@ = %@, type = %s", name, value, class_getName([value class]));
+        }
+        objc_property_t property = class_getProperty([object class], ivar_getName(thisIvar));
+        if (property != NULL)
+        {
+            NSLog(@"%s", property_getAttributes(property));
         }
     }
 }

@@ -50,30 +50,25 @@ NSString *setter_from_key(NSString *key);
     NSArray* names = [dic allKeys];
     for (NSString* name in names)
     {
-        
-        const char * type = NULL;
         id object = [dic objectForKey:name];
         if ([object respondsToSelector:@selector(objCType)])
         {
-            type = [object objCType];
+            propertyAttributeArray = @[@"nonatomic",@"assign"];
         }
         else
         {
-            type = "@";
-        }
-        
-        switch (type[0]) {
-            case _C_ID:
-            case _C_CLASS:
+            if ([object isKindOfClass:[NSString class]])
+            {
+                propertyAttributeArray = @[@"nonatomic",@"copy"];
+            }
+            else
+            {
 #if __has_feature(objc_arc)
-                propertyAttributeArray = @[@"nonamotic",@"strong"];
+                propertyAttributeArray = @[@"nonatomic",@"strong"];
 #else
-                propertyAttributeArray = @[@"nonamotic",@"retain"];
+                propertyAttributeArray = @[@"nonatomic",@"retain"];
 #endif
-                break;
-            default:
-                propertyAttributeArray = @[@"nonamotic",@"assign"];
-                break;
+            }
         }
         class_addProperty_ex(targetClass, name, [dic objectForKey:name], propertyAttributeArray);
     }

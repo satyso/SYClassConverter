@@ -41,17 +41,13 @@ BOOL class_addProperty_ex(Class c, NSString* name, id value, NSArray* propertyAt
         }
         else
         {
+            type = "@";
             const char* className = class_getName([value class]);
             if (strlen(className) > 35)
             {
                 NSLog(@"class name too long");
                 return NO;
             }
-            char str[40];
-            strcpy(str, "@\"");
-            strcat(str, className);
-            strcat(str, "\"");
-            NSLog(@"class type = %s", str);
         }
     }
     
