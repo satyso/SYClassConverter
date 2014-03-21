@@ -123,8 +123,7 @@ NSString *setter_from_key(NSString *key);
                     NSUInteger bufferSize = 0;
                     const char* type = property_copyAttributeValue(property, "T");
                     NSGetSizeAndAlignment(type, &bufferSize, NULL);
-                    Byte* buffer = malloc(bufferSize);
-                    memset(buffer, 0, bufferSize);
+                    void* buffer = calloc(1,bufferSize);
                     
                     NSGetSizeAndAlignment([value objCType], &bufferSize, NULL);
                     void* buffer1 = (void*)malloc(bufferSize);
