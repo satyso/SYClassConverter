@@ -17,6 +17,6 @@
 @property (nonatomic, strong, setter = strTest:)           NSString*       str;
 @property (nonatomic, assign, setter = doubleValueTest:)   double          doubleValue;
 @property (nonatomic, assign)       unsigned char   uc;
-
+@property (nonatomic, copy)       NSString*   strstr;
 
 @end

@@ -106,8 +106,8 @@ BOOL class_addProperty_ex(Class c, NSString* name, id value, NSArray* propertyAt
         {
             if (attribute.length > @"getter=".length)
             {
-                const char* setter = [[attribute substringFromIndex:@"getter=".length] UTF8String];
-                array[count++] = (objc_property_attribute_t){ "S", setter };
+                const char* getter = [[attribute substringFromIndex:@"getter=".length] UTF8String];
+                array[count++] = (objc_property_attribute_t){ "G", getter };
             }
         }
     }

@@ -26,25 +26,25 @@ int main(int argc, const char * argv[])
         NSArray* array = @[@"frist",@"second"];
         NSDictionary* dic = @{@"str":@"dicStr",@"uinteger":@1,@"doubleValue":@3.4,@"uc":c,@"strArray":array};
         
-        NSLog(@"classNotExist===========");
-        {
-            id classNotExist = [SYClassConverter constructObjectWithClassName:@"TestClassAAAAA" fromDictionary:dic];
-            display(classNotExist);
-        }
+//        NSLog(@"classNotExist===========");
+//        {
+//            id classNotExist = [SYClassConverter constructObjectWithClassName:@"TestClassAAAAA" fromDictionary:dic];
+//            display(classNotExist);
+//        }
         
         NSLog(@"classExist===========");
         {
             id classExist = [SYClassConverter constructObjectWithClassName:@"TestClass" fromDictionary:dic];
             display(classExist);
         }
-        
-        
-        NSLog(@"objectExist===========");
-        {
-            TestClass* objectExist = [TestClass new];
-            [SYClassConverter contructObject:objectExist withDictionary:dic];
-            display(objectExist);
-        }
+//
+//        
+//        NSLog(@"objectExist===========");
+//        {
+//            TestClass* objectExist = [TestClass new];
+//            [SYClassConverter contructObject:objectExist withDictionary:dic];
+//            display(objectExist);
+//        }
     }
     return 0;
 }

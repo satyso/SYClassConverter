@@ -95,24 +95,26 @@ NSString *setter_from_key(NSString *key);
         NSValue* value = [dic objectForKey:name];
         if (value != nil)
         {
-            const char* readOnly = property_copyAttributeValue(property, "R");
+            char* readOnly = property_copyAttributeValue(property, "R");
             if (readOnly != NULL)
             {
+                free(readOnly);
                 continue;
             }
             
-            const char* setterName = property_copyAttributeValue(property, "S");
-            SEL sel;
+            char* setterName = property_copyAttributeValue(property, "S");
             if (setterName != NULL)
             {
-                sel = NSSelectorFromString([NSString stringWithUTF8String:setterName]);
+                SEL sel = NSSelectorFromString([NSString stringWithUTF8String:setterName]);
+                free(setterName);
+                
                 Method method = class_getInstanceMethod([object class], sel);
                 if (method == NULL)
                 {
                     continue;
                 }
-                const char* encoding = method_getTypeEncoding(method);
                 
+                const char* encoding = method_getTypeEncoding(method);
                 NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:encoding];
                 
                 NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
@@ -121,19 +123,15 @@ NSString *setter_from_key(NSString *key);
                 if ([value respondsToSelector:@selector(objCType)])
                 {
                     NSUInteger bufferSize = 0;
-                    const char* type = property_copyAttributeValue(property, "T");
+                    char* type = property_copyAttributeValue(property, "T");
                     NSGetSizeAndAlignment(type, &bufferSize, NULL);
-                    void* buffer = calloc(1,bufferSize);
+                    free(type);
                     
-                    NSGetSizeAndAlignment([value objCType], &bufferSize, NULL);
-                    void* buffer1 = (void*)malloc(bufferSize);
-                    [value getValue:buffer1];
-                    memcpy(buffer,buffer1,bufferSize);
+                    void* buffer = calloc(1,bufferSize);
+                    [value getValue:buffer];
                     [invocation setArgument:buffer atIndex:2];
                     [invocation retainArguments];
                     free(buffer);
-                    free(buffer1);
-                    
                 }
                 else
                 {
